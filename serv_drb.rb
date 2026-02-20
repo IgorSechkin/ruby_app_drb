@@ -109,16 +109,13 @@ class MyService
       # переход на страницу администратора %>
       return ERB.new(IO.read("./public/admin.html.erb")).result(binding)
     else
-      p Digest::SHA256.hexdigest(pars["password"])
+      Digest::SHA256.hexdigest(pars["password"])
 
       if @us[6] == Digest::SHA256.hexdigest(pars["password"])
         @login = true
         str = ""
         # кукки email и password для profile 
-        str = "<link rel=\"stylesheet\" href=\"email=#{@us[2]}\">" +
-        "<link rel=\"stylesheet\" href=\"password=#{@us[6]}\">" +
-        # переход на страницу catalog
-        "<meta http-equiv=\"Refresh\" content=\"0; URL=show_tovar\"/>"
+        str = "<link rel=\"stylesheet\" href=\"email=#{@us[2]}\"> <link rel=\"stylesheet\" href=\"password=#{@us[6]}\"> <meta http-equiv=\"Refresh\" content=\"0; URL=show_tovar\"/>"
         return str
         # return ERB.new(IO.read("./public/catalog.html.erb")).result(binding)
       else
@@ -322,3 +319,4 @@ puts "Сервер запущен на druby://:9000"
 DRb.thread.join
 
 # system("kill #{Process.pid}")
+
