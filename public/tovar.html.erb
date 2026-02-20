@@ -1,0 +1,29 @@
+<% require 'erb' %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>Товар</h1>
+
+	<% @tovar.each do |d| %>
+	<p>id: <%= d[0] %></p>
+    <p><%= d[2] %></p>
+    <p><%= d[7] %></p>
+    <img src="<%= d[8] %>" width="200" heigt="200">
+    <div class="card-footer">
+              <form action="dobavit_tovar_corziny" method="post">
+                <input type="text" name="id_tovar" value="<%= "#{d[0]}"%>" hidden >
+                <input type="submit"  value="Додати у кошик" >
+                <%# <button type="submit">Додати у кошик</button> %>
+              </form>
+            </div> 
+    <hr>
+    <% end %>
+
+
+</body>
+</html>

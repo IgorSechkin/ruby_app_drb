@@ -1,0 +1,342 @@
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <h3 id="name_user" hidden>Доброе время суток <%#= @us[1]%></h3>
+
+<%# ======================================================================= %>
+<%# это поле фильтра ввода по буквам %>
+<input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Найти товар по названию..">
+<%# ======================================================================= %>
+
+
+  <%#= @col = @hash_coockie["id_tovar"].split("|").size if @hash_coockie["id_tovar"] != nil %>
+
+
+  <form action="delete_coockie" method="post">
+      <input type="submit" class="btn btn-info btn_cookie" value="Выйти из кабинета" >
+  </form>
+
+
+<%# ======================================================================= %>
+
+  <div class="d-flex mb-3 bg-secondary">
+    <%# раздел по фильтрам чеки %>
+    <div class="p-2 mr-auto bg-info" >xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    
+      <p class="font-weight-bold">Вид морозива</p>
+      <p class="font-italic">за складом:</p>
+      <div class="filters">
+        
+      <div class="form-check">
+        <label class="form-check-label" >
+          <input type="checkbox" class="form-check-input" id="plombir">
+          <a title="Пломбір" data-toggle="popover" data-trigger="hover" data-content="Найжирніший вид, містить 12-20% жиру. Основа — незбиране молоко, вершки та яйця.">Пломбір</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="vershkove">
+          <a title="Вершкове" data-toggle="popover" data-trigger="hover" data-content="Містить 8-11,5% жиру, виготовляється на основі вершків.">Вершкове</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="milck">
+          <a title="Молочне" data-toggle="popover" data-trigger="hover" data-content="Найменш жирне, містить 0,5-7% жиру, основою є молоко. ">Молочне</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="comby">
+          <a title="З комбінованим складом" data-toggle="popover" data-trigger="hover" data-content="Включаеє як молочні, так и рослинні жири.  ">З комбінованим складом</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="fruit">
+          <a title="Сорбет" data-toggle="popover" data-trigger="hover" data-content="Основою є фруктове фищ ягідне пюре; не включає молочних продуктів.">Сорбет</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="lid">
+          <a title="Фруктовий лід" data-toggle="popover" data-trigger="hover" data-content="Найтвердіший вид, складається з фруктового соку з додаванням цукру.">Фруктовий лід</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="sherbet">
+          <a title="Шербет" data-toggle="popover" data-trigger="hover" data-content="Суміш сорбету та морозива, містить як молочні продукти, так і фруктове пюре чи сік.">Шербет</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="granita">
+          <a title="Гранита" data-toggle="popover" data-trigger="hover" data-content=" Колотий фруктовий або шоколадный лід з цукором. ">Гранита</a>
+        </label>
+      </div>
+      </br>
+      <p class="font-italic">за способом приготування:</p>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="miagkoe" >
+          <a data-toggle="popover" data-trigger="hover" data-content=" Колотий фруктовий або шоколадный лід з цукором. ">Мягкое</a>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="zakal">Закаленное
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" id="dgelato" >Джелато
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" id="reload">Сбросить все фильтры</button>
+  </div>
+
+
+<%# раздел карточек %>
+
+  <div class="p-2 flex-fill bg-warning">
+    
+    <div class="card-columns bg-primary" id="catalog" > 
+    <% @tovar.each do |d| %>  
+    <%# для фильтрации товара по виду по чекам %>
+      <div class="card" data-status="<%= d[6] %>"> 
+        <img class="card-img-top" src="<%= d[8] %>" alt="Card image" style="width:100%">
+        <div class="card-header"><h4 class="card-title"><%= d[2] %> </h4></div>
+        <div class="card-body text-left">
+            <p class="card-text">Код : <%= d[0] %></p>
+            <p class="card-text">Назва : <%= d[7] %></p>
+            <p class="card-text">Цена : <%= d[5]%></p>
+        </div>
+        <div class="card-footer">
+          <% if d[4].to_i <= 0 %>
+            <p class="card-text" style="color: red;">Немає в наявності</p>
+
+          <% else %> 
+            <p class="card-text" style="color: green;">В наявності</p>
+              <%#  добавлять в корзину будем через javascript %>
+            <button id="btn" class="btn_cookie" onclick="btn_click(<%= d[0] %>)">Додати у кошик</button>
+          <% end %> 
+        </div> 
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<%# фильтр по буквам %>
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#catalog div").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+
+<%# контекстное меню попов %>
+<script>
+  $(".form-check").ready(function(){
+      $('[data-toggle="popover"]').popover();   
+  });
+</script>
+
+<%# фильтр по чекам %>
+<script>
+        const items = document.querySelectorAll('.card');
+        // Получаем элементы управления фильтрами
+        const showPlombirCheckbox = document.getElementById('plombir');
+        const showVershkoveCheckbox = document.getElementById('vershkove');
+        const showMilckCheckbox = document.getElementById('milck');
+        const showCombyCheckbox = document.getElementById('comby');
+        const showFruitCheckbox = document.getElementById('fruit');
+        const showLidCheckbox = document.getElementById('lid');
+        const showSherbetCheckbox = document.getElementById('sherbet');
+        const showGranitaCheckbox = document.getElementById('granita');
+        <%# const showMiagkoeCheckbox = document.getElementById('miagkoe');
+        const showZakalCheckbox = document.getElementById('zakal');
+        const showDgelatoCheckbox = document.getElementById('dgelato'); %>
+
+        
+
+        // Функция фильтрации
+        function filterReceipts() {
+          <%# if (showSherbetCheckbox.checked) {
+            alert('Чекбокс отмечен');
+          } else {
+            alert('Чекбокс не отмечен');
+          } %>
+
+
+          const Plombir = showPlombirCheckbox.checked;
+          const Vershkove = showVershkoveCheckbox.checked;
+          const Milck = showMilckCheckbox.checked;
+          const Comby = showCombyCheckbox.checked;
+          const Fruit = showFruitCheckbox.checked;
+          const Lid = showLidCheckbox.checked;
+          const Sherbet = showSherbetCheckbox.checked;
+          const Granita = showGranitaCheckbox.checked;
+          <%# const Miagkoe = showMiagkoeCheckbox.checked;
+          const Zakal = showZakalCheckbox.checked;
+          const Dgelato = showDgelatoCheckbox.checked; %>
+          <%# if (Plombir) {
+            alert('Чекбокс отмечен');
+          } else {
+            alert('Чекбокс не отмечен');
+          } %>
+
+          items.forEach(item => {
+            const status = item.getAttribute('data-status');
+            // Получаем div по его id
+//const myDiv = document.getElementById('myDivId');
+
+// Устанавливаем атрибут hidden
+<%# item.hidden = true; %>
+            let isVisible = true;
+<%# alert(status) %>
+<%# alert(item) %>
+            // Фильтр по статусу
+            if (status === 'plombir' && !Plombir) isVisible = false;
+            if (status === 'vershkove' && !Vershkove) isVisible = false;
+            if (status === 'milck' && !Milck) isVisible = false;
+            if (status === 'comby' && !Comby) isVisible = false;
+            if (status === 'fruit' && !Fruit) isVisible = false;
+            if (status === 'lid' && !Lid) isVisible = false;
+            if (status === 'sherbet' && !Sherbet) isVisible = false;
+            if (status === 'granita' && !Granita) isVisible = false;
+<%# alert(isVisible) %>
+            // Показываем или скрываем чек
+            if (isVisible) {
+              item.hidden = false;
+              <%# item.classList.remove('hidden'); %>
+            } else {
+              item.hidden = true;
+              <%# item.classList.add('hidden'); %>
+            }
+
+          });
+
+        }
+
+        // Добавляем обработчики событий
+        showPlombirCheckbox.addEventListener('change', filterReceipts);
+        showVershkoveCheckbox.addEventListener('change', filterReceipts);
+        showMilckCheckbox.addEventListener('change', filterReceipts);
+        showCombyCheckbox.addEventListener('change', filterReceipts);
+        showFruitCheckbox.addEventListener('change', filterReceipts);
+        showLidCheckbox.addEventListener('change', filterReceipts);
+        showSherbetCheckbox.addEventListener('change', filterReceipts);
+        showGranitaCheckbox.addEventListener('change', filterReceipts);
+        //showMiagkoeCheckbox.addEventListener('change', filterReceipts);
+        //showZakalCheckbox.addEventListener('change', filterReceipts);
+        //showDgelatoCheckbox.addEventListener('change', filterReceipts);
+       
+</script>
+
+<script>
+  <%# перегрузить страницу %>
+  document.getElementById('reload').addEventListener('click', function() {
+    <%# выбрать все чеки %>
+    const checks = document.getElementsByClassName('form-check-input');
+    <%# перебрать чеки и установит checked в false %>
+    for (var i = 0; i < checks.length; i++) {
+      checks[i].checked = false;
+    }
+
+
+    window.location.reload();
+  });
+</script>
+<%# =========================================================================================== %>
+
+<script>
+  // прячет корзину
+  const showCorzina = document.getElementById('template_corzina');
+  showCorzina.hidden = false;
+</script>
+
+
+<%# добываем куки  id товара, email, password и отображаем или прячем кнопки "вход-выход" и "отправить в корзину"" в зависимости от входа пользователя по кукам здесь просто проверяется наличие email and pdssword%>
+<script>
+  function getAllCookies(){
+    <%# получаем и парсим куки %>
+    const cookies = {};
+
+    if (document.cookie && document.cookie !== ""){
+      document.cookie.split(';').forEach(cookie => {
+        const parts = cookie.match(/(.*?)=(.*)$/);
+        if (parts){
+          cookies[parts[1].trim()]= decodeURIComponent(parts[2].trim());
+        }
+      });
+    }
+    return cookies
+
+  }
+</script>
+
+<script>
+  var cookie = document.cookie;
+  const allCookies = getAllCookies();
+  
+  const buts = document.getElementsByClassName("btn_cookie");
+  const nameUser = document.getElementById("name_user");
+
+  if(allCookies['/email'] && allCookies['/password']){
+    for (but of buts) {
+      <%# alert(but.innerHTML); %>
+      but.style.display = "inline";
+      nameUser.style.display = "inline";
+    }
+  }
+  else {
+    for (but of buts) {
+      <%# but.setAttribute("hidden"); %>
+      but.style.display = "none";
+    }
+  }
+  </script>
+
+  <%# ============кнопки добавить в корзину======================================= %>
+
+
+    <script>
+
+    // в обработчик передается текст
+    function btn_click(id){
+        <%# console.log(allCookies['/id_tovar']);  // выводим этот текст %>
+
+        const cookies = getAllCookies();
+        <%# если куки id_tovar существует %>
+        if (cookies['/id_tovar']){
+          document.cookie = "/id_tovar=" + `${cookies['/id_tovar']}` + `/${id}`;
+        }
+        else{
+          document.cookie = "/id_tovar=" + `${id}`;
+        }
+        <%# в спан возе корзины добавляем количество товара что-бы пользователь знал что в корзине %>
+        let col = cookies["/id_tovar"].split('/').length;
+        const spanCorzina = document.getElementById("korzina");
+        spanCorzina.innerText = col;
+
+    }
+
+    // pointerId: Уникальный идентификатор для конкретного касания или нажатия.
+    // pointerType: Тип устройства (мышь, перо, касание).
+    // clientX / clientY: Координаты относительно видимой области окна (viewport).
+    // target: Элемент DOM, на котором произошло событие.
+    // pressure: Сила нажатия (от 0 до 1), если поддерживается устройством.
+    // button / buttons: Какая кнопка мыши/пера нажата.
+    
+    </script>
+

@@ -1,0 +1,30 @@
+<% require 'erb' %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>Клиенты</h1>
+
+	<% @users.each do |d| %>
+	<p>Name: <%= d[1] %></p>
+    <p>Email: <%= d[2] %></p>
+    <p><%= d[3] %></p>
+    <p><%= d[4] %></p>
+    <p><%= d[5] %></p>
+    <p>Password: <%= d[6] %></p>
+    <p>Admin: <%= d[7] %></p>
+    <p>Phone: <%= d[8] %></p>
+    <form action="delete_user" method="POST">
+        <input type="text" name="id" value="<%= "#{d[0]}" %>" hidden>
+        <input type="submit" value="delete user">
+    </form>
+    
+    <hr>
+    <% end %>
+
+</body>
+</html>

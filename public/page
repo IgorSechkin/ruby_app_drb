@@ -1,0 +1,6 @@
+<h1>Page</h1>
+<a href="/info">Info</a>
+
+<img src="/picture.png"><br>
+<video src="/sample.mp4" height="500" width="600" controls></video><br>
+<audio src="Baccara.mp3" height="500" width="600" controls></audio><br>

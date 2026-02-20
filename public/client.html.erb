@@ -1,0 +1,54 @@
+<% require 'erb' %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>Клиент</h1>
+
+<%
+require 'drb/drb'
+require 'json'
+
+class ChatClient
+  include DRbUndumped
+
+  def initialize(name)
+    @name = name
+    @key = nil
+  end
+  attr_reader(:name)
+  attr_accessor(:key)
+
+  def message(there, str)
+    raise 'invalid key' unless @key == there
+    puts str
+  end
+end
+
+
+  name = "Sasha"
+
+  DRb.start_service
+  ro = DRbObject.new("druby://localhost:9000")
+
+  # chat = ChatClient.new(name)
+  chat = {:name => :Sasha, :key => nil}
+
+  entry = ro.send(add_member(chat.inspect))
+  # entry = ERB.new(ro.send(add_member(chat))).result(binding) 
+ 
+  while gets
+  %>
+  <p><%= entry.say($_) %></p>  
+  <%
+  end
+  # DRb.close
+
+%>
+
+</body>
+</html>

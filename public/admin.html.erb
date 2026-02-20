@@ -1,0 +1,241 @@
+ <h1>Admin page </h1>
+<link rel="stylesheet" href="<%= "email=#{@us[2]}"%>">
+<link rel="stylesheet" href="<%= "password=#{@us[6]}"%>">
+
+<%# ======Загрузить файл заказов===================================== %>
+<button id="loadBtn">Загрузить файл заказов</button>
+<pre id="content"></pre> <!-- Для отображения текста -->
+
+
+<script>
+        const reader = new FileReader();
+        
+        document.getElementById('loadBtn').addEventListener('click', function() {
+            // Укажите имя вашего файла, находящегося в той же директории
+            fetch('zakaz.txt')
+  
+                .then(response => response.blob())
+                .then(blobFile => {
+                     const myFile = new File([blobFile], "zakaz.txt", {type: blobFile.type});
+                     if (!myFile) return;
+
+                        reader.onload = function(e) {
+                            const content = e.target.result; // Читаем содержимое
+                            document.getElementById('content').textContent = content; // Выводим [6]
+                        };
+                        reader.readAsText(myFile); // Читаем как текст [6]
+                    })
+
+                .then(data => {
+                    // Вывод текста на страницу
+                    document.getElementById('content').textContent = data;
+                })
+                .catch(error => {
+                    document.getElementById('content').textContent = 'Ошибка: ' + error;
+                });
+        });
+
+
+</script>
+<%# ======Очистить файл заказов===================================== %>
+
+<button id="clearBtn">Очистить файл заказов</button>
+
+<script>
+    document.getElementById('clearBtn').addEventListener('click', function() {
+            // Укажите имя вашего файла, находящегося в той же директории
+            fetch('ochistit_file_zakaza')
+    });
+</script>
+
+<%# =============================================================== %>
+<div class="container" id="signup" style="position:relative; z-index:2; color: navy">
+    <form class="form-block" role="form" method="POST" action="new_tovar.html.erb" >
+        <label for="code" class="mb-2 mr-sm-2">Код:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="code" placeholder="Введите код товара" name="code">
+        <label for="name" class="mb-2 mr-sm-2">Название товара:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="name" placeholder="Введите название товара" name="name">
+        <label for="ed" class="mb-2 mr-sm-2">Единицы учёта:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="ed" placeholder="Еденица учёта" name="ed">
+        <label for="col" class="mb-2 mr-sm-2">Количество</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="col" placeholder="Количество" name="col">
+        <label for="price" class="mb-2 mr-sm-2">Цена</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="price" placeholder="Цена" name="price">
+        <label for="vid" class="mb-2 mr-sm-2">Вид мороженого</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="vid" placeholder="Вид мороженого" name="vid">
+        <label for="opis" class="mb-2 mr-sm-2">Описание товара</label>
+        <textarea class="form-control" rows="5" id="opis" name="opis"></textarea>
+        <label for="photo" class="mb-2 mr-sm-2">Фото</label>
+        <input type="file" class="form-control mb-2 mr-sm-2" id="photo" placeholder="Фото" name="photo">
+        <input type="submit" class="btn btn-primary mb-2" value="Внести новую позицию">
+    </form>
+</div>
+<%# <script type="text/javascript" src="jquery.js"></script> %>
+<script type="text/javascript">  
+    <%# $("#fileInput").click(function(){ %>
+        <%# document.getElementById('fileContent').load("zakaz.txt"); %>
+        <%# $("#fileContent").load("zakaz.txt"); %>
+       <%#  fetch('zakaz.txt')
+          .then(response => response.text())
+          .then(text => {
+            document.getElementById('fileContent').innerText = text;
+          })
+          .catch(error => console.error('Error:', error));
+    }); %>
+</script>
+
+
+
+
+    <script>
+        <%# document.getElementById('fileInput').addEventListener('change', function(event) {
+            
+            const file = event.target.files[0]; // Получаем выбранный файл [6]
+
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result; // Читаем содержимое
+                document.getElementById('fileContent').textContent = content; // Выводим [6]
+            };
+            reader.readAsText(file); // Читаем как текст [6]
+        }); %>
+    </script>
+
+   <%#  <button id="loadBtn">Загрузить файл</button>
+    <pre id="content"></pre> %>
+
+    <script>
+       <%#  document.getElementById('loadBtn').addEventListener('click', async () => {
+            try {
+                // Запрос к файлу в той же директории
+                const response = await fetch('zakaz.txt');
+                if (!response.ok) throw new Error('Ошибка загрузки');
+                
+                // Чтение содержимого файла
+                const text = await response.text();
+                
+                // Отображение текста на странице
+                document.getElementById('content').textContent = text;
+            } catch (error) {
+                document.getElementById('content').textContent = error.message;
+            }
+        }); %>
+    </script>
+</body>
+</html>
+
+<%# <input type="file" accept=".txt">: Позволяет пользователю выбрать текстовый файл.
+FileReader(): Объект, считывающий локальные файлы.
+readAsText(file): Метод, преобразующий файл в текстовую строку.
+<pre>: Тег, сохраняющий форматирование (переносы строк, пробелы) из .txt файла.  %>
+
+<script>
+<%# 
+    async function loadText() {
+        try {
+            const response = await fetch('zakaz.txt'); // Путь к файлу
+            if (!response.ok) throw new Error('Ошибка сети');
+            
+            const text = await response.text();
+            document.getElementById('fileContent').innerText = text;
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    }
+
+    loadText();
+ %></script>
+
+<%# <p id="par1">После нажатия на кнопку в данном поле будет отображено содержимое файла testfile.txt.</p>
+<input id="but1" type="button" value="Запросить файл" />
+<script>
+    $(document).ready(function(){
+   $("#but1").click(function(){
+      $("#par1").load("zakaz.txt");
+   })
+});
+</script> %>
+
+<%# <h3>Выберите текстовый файл:</h3>
+    <!-- Кнопка выбора файла -->
+    <input type="file" id="fileInput" >
+    <br><br>
+    <button id="loadButton">Загрузить контент</button>
+    
+    <h3>Содержимое файла:</h3>
+    <pre id="fileContent"></pre>
+
+    <script>
+        document.getElementById('loadButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0]; // Получаем выбранный файл
+            
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                // Обработка успешного чтения
+                reader.onload = function(e) {
+                    document.getElementById('fileContent').textContent = e.target.result;
+                };
+                
+                // Обработка ошибок
+                reader.onerror = function() {
+                    alert('Ошибка при чтении файла');
+                };
+                
+                reader.readAsText(file); // Читаем файл как текст
+            } else {
+                alert('Пожалуйста, выберите файл сначала.');
+            }
+        });
+    </script> %>
+
+
+<%# ================================================================================================ %>
+<div id="app1"></div>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel" data-type="module">
+    import React from "https://esm.sh/react@19?dev";
+    import ReactDOM from "https://esm.sh/react-dom@19/client?dev";
+
+    const text = document.getElementById("content");
+        // создаем контекст для отслеживания состояния isAuthenticated
+    const ShowContext = React.createContext();
+
+
+    function App() {
+
+            // состояние указывает, аутентифицирован ли пользователь
+        const [isShow, setIsShow] = React.useState(false);
+
+            // используем Context API
+        return (
+            <ShowContext.Provider value={{ isShow, setIsShow }}>
+                <%# <h1> {isShow ? "Authenticated" : "No Access"}</h1> %>
+                {isShow ? `${text.textContent}` : ""}
+                <Show />
+            </ShowContext.Provider>
+        );
+    }
+
+    function Show() {
+        const { isShow, setIsShow } = React.useContext(ShowContext);
+
+        return (
+            <button onClick={() => setIsShow(!isShow)}>
+                {isShow ? "Спрятать файл заказов" : "Показать файл заказов"}
+            </button>
+        );
+    }
+    ReactDOM.createRoot(
+        document.getElementById("app1")
+    )
+    .render(
+        <App />
+    );
+</script>

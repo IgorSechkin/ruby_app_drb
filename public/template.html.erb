@@ -1,0 +1,305 @@
+
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Magazine morozenko</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+
+  
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+    <link href="bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+    <main role="main">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="home">
+        <img src="picture.png" class="rounded-circle" alt="logo" style="width:40px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <!-- <a class="nav-link" href="#">Домой <span class="sr-only">(current)</span></a> -->
+          <a class="nav-link active" href="home">
+              <span data-feather="page"></span>
+              Домой <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="show_post">Контент</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="aboutus">О нас</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#myModal3" data-toggle="modal" data-target="#myModal3">Личный кабинет</a>
+          <a class="nav-link " href="#myModal3" data-toggle="modal" hidden >Выйти из кабинета</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="users">Клиенты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="contacts">Контакты</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="books">Книги</a>
+        </li>
+        <li class="nav-item" >
+          <%# <form  action="show_tovar" method="POST"> %>
+            <%# <input type="submit" name="" value="Каталог" class="nav-link"> %>
+            <%# <button type="submit" class="btn btn-link">Каталог</button>  %>
+            <a class="nav-link" href="show_tovar">Каталог</a>
+          <%# </form> %>
+          
+        </li>
+         <li class="nav-item">
+          <form action="corzina" method="POST">
+            <button type="submit" id="template_corzina" class="btn btn-link" hidden>Кoшик</button> 
+            <span class="badge badge-secondary badge-pill" id="korzina"></span>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<%# <main role="main"> %>
+<!-- =========================Карусель==================================================================== -->
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>One more for good measure.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  
+  <!-- =========================The Modal======================= -->
+  <div class="modal fade" id="myModal3">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Log in</h4> -->
+          <div class="container">
+            <ul class="nav nav-tabs nav-justified">
+              <li class="nav-item">
+                <a class="nav-link active" href="javascript:void(0)" onClick="show_d(login);">Log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" onClick="show_d(signup);">Sign up</a>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" id="body">
+
+          <div class="container" id="login" style="position:relative;  z-index:1; color: navy">
+            <form class="form-inline" role="form" method="POST" action="session" autocomplete="off" >
+              <label for="email" class="mb-2 mr-sm-2">Email:</label>
+              <input type="email" class="form-control mb-2 mr-sm-2" id="email" placeholder="Enter email" name="email"></br>
+              <label for="pwd" class="mb-2 mr-sm-2">Password:</label>
+              <input type="password" class="form-control mb-2 mr-sm-2" id="pwd" placeholder="Enter password" name="password"></br>
+              <div class="form-check mb-2 mr-sm-2">
+                <label class="form-check-label">
+                  <input class="form-check-input "type="checkbox" name="remember"> Remember me
+                </label>
+              </div></br>    
+            <input type="submit" class="btn btn-primary mb-2" value="Войти в личный кабинет">
+            </form>
+          </div>
+
+          <div class="container" id="signup" style="position:relative; display: none; z-index:2; color: navy">
+            <form class="form-block" role="form" method="POST" action="new_user">
+              <%# <form class="form-block" role="form" method="POST" action="new_user"> %>
+              <label for="name" class="mb-2 mr-sm-2">Name:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="name" placeholder="Enter name" name="name">
+              <label for="email2" class="mb-2 mr-sm-2">Email:</label>
+              <input type="email" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter email" name="email">
+              <label for="pwd2" class="mb-2 mr-sm-2">Password:</label>
+              <input type="pasword" class="form-control mb-2 mr-sm-2" id="pwd2" placeholder="Enter password" name="password">
+              <label for="pwd2" class="mb-2 mr-sm-2">Phone:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="phone" placeholder="Enter phone number" name="phone">
+            <input type="submit" class="btn btn-primary mb-2" value="Зарегистрировать кабинет">
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- ========================================================== -->
+
+<%# ========================================================== %>
+<div class="p-2 flex-fill" id="yield"><%= yield %></div>
+<%# <div id="yield"></div> %>
+
+<script>
+  //попытка вставить содержимоу других страниц в шаблон
+<%# const myDiv = document.getElementById('yield'); 
+const a = document.querySelector('a');
+//a.href = `${location.href}${a.getAttribute('href')}`;
+a.href = `${location.href}`;
+const newUrl = `${a.href}`;
+a
+
+// Меняем URL в адресной строке
+// history.pushState({}, '', newUrl);
+
+// Загружаем данные для новой страницы асинхронно
+fetch(newUrl + ".html")
+    .then(response => response.text())
+    .then(html => {
+      lert(html);
+        // Вставляем загруженный HTML в нужный блок
+        myDiv.innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Ошибка загрузки:', error);
+    }) %>; 
+// 2. Добавляем данные
+// Способ 1: Перезаписать всё
+<%# myDiv.innerHTML = '<b>Жирный текст</b> и параграф'; %>
+
+// Способ 2: Добавить текст
+// myDiv.textContent = 'Это новый текст';
+
+// Способ 3: Добавить новый параграф
+// let newParagraph = document.createElement('p');
+//newParagraph.textContent = 'Это новый параграф, добавленный через appendChild.';
+//myDiv.appendChild(newParagraph);
+
+// Способ 4: Добавить текст и элемент с помощью append
+//myDiv.append(' Еще текст', ' ', newParagraph);
+</script>
+
+<script>
+  <%# const a = document.querySelector('a');
+  a.href = `${location.href}${a.getAttribute('href')}`;
+
+  const newUrl = "/"a.href;
+
+// Меняем URL в адресной строке
+history.pushState({}, '', newUrl);
+
+// Загружаем данные для новой страницы асинхронно
+fetch(newUrl)
+    .then(response => response.text())
+    .then(html => {
+        // Вставляем загруженный HTML в нужный блок
+        document.getElementById('app-container').innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Ошибка загрузки:', error);
+    }); %>
+</script>
+<!-- ========================================================== -->
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+<%# <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> %>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<%# <script src="bootstrap.bundle.js"></script> %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<%# <script src="dashboard.js"></script> %>
+<!-- sloi -->
+
+  
+    <script>
+      <%# функция в личном кабинете показывает либо login либо signup %>
+        function show_d(d)
+      {
+        if (d === login){
+          d.style.display='inline';
+          signup.style.display='none';}
+        else if(d === signup){
+          d.style.display='inline';
+          login.style.display='none';}
+      }
+    </script>
+
+  </body>
+</html>
