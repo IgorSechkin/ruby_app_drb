@@ -115,9 +115,9 @@ class MyService
         @login = true
         str = ""
         # кукки email и password для profile 
-        str = "<link rel=\"stylesheet\" href=\"email=#{@us[2]}\"> <link rel=\"stylesheet\" href=\"password=#{@us[6]}\"> <meta http-equiv=\"Refresh\" content=\"0; URL=show_tovar\"/>"
-        return str
-        # return ERB.new(IO.read("./public/catalog.html.erb")).result(binding)
+        # str = "<link rel=\"stylesheet\" href=\"email=#{@us[2]}\"> <link rel=\"stylesheet\" href=\"password=#{@us[6]}\"> <meta http-equiv=\"Refresh\" content=\"0; URL=show_tovar\"/>"
+        # return str
+        return ERB.new(IO.read("./delete_session_cookie.html.erb")).result(binding)
       else
         return "<p style=\"color: red;\">Ви не зареєстровані, або не вірний пароль</p>"
       end
@@ -319,4 +319,5 @@ puts "Сервер запущен на druby://:9000"
 DRb.thread.join
 
 # system("kill #{Process.pid}")
+
 
