@@ -42,8 +42,9 @@ class App
     elsif meth =~ /([^=]+)=([^;]+)/ 
       # p meth
       # "<meta http-equiv=\"Refresh\" content=\"0; URL=home.html\"/>"
-      coockie = "HTTP/1.1 200 OK\r\nContent-Type: text/css\r\nSet-Cookie: /#{meth}; Path=/; secure=true; SameSite=none; HttpOnly=true;"
-      p coockie
+      # coockie = "HTTP/1.1 200 OK\r\nContent-Type: text/css\r\nSet-Cookie: /#{meth}; Path=/; secure; SameSite=none; HttpOnly;"
+      coockie = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nSet-Cookie: /#{meth}; Path=/; secure; HttpOnly; SameSite=none;
+      \r\nAccess-Control-Allow-Credentials: true\r\nAccess-Control-Allow-Origin: https://ruby-app-drb.onrender.com"
       sock.write coockie 
       sock.close
     else
@@ -95,5 +96,6 @@ end
 # env["HTTP_COOKIE"]
 # "CONTENT_LENGTH"=>"25"
 # env["rack.input"]
+
 
 
