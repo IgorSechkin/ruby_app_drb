@@ -1,1 +1,11 @@
+<div id="em"><%= @email %></div>
+<div id="pw"><%= @password %></div>
+<script>
+	const em = document.getElementById("em");
+	document.cookie = em.innerText;
+	const pw = document.getElementById("pw");
+	document.cookie = pw.innerText;
+</script>
 
+
+<meta http-equiv="Refresh" content="0; URL=show_tovar"/>
