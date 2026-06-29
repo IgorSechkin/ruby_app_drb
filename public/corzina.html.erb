@@ -1,0 +1,73 @@
+<h1> Ваша корзина</h1>
+
+<p id="userPhone">phone : <%= @user[0]["phone"]%></p> 
+
+ <%# отселектить по id и занести в таблицу  %>
+<% for key in @hash_id.keys do
+    @tovars.each(){ |tovar|
+ 
+        if tovar["id"]  == key.to_i %>
+                            
+            <div class="zakaz">
+                <br>
+                <p>Код: <%= tovar["code"] %></p>
+                <p>Назва: <%= tovar["name"] %></p>
+                <p>Кількість: <%= @hash_id[key] %></p>
+                <p>Ціна : <%= tovar["price"] %></p>
+                <p>Сума : <%= tovar["price"].to_f * @hash_id[key].to_i %></p>
+                <p></p>
+                
+                <p>=============================================================</p>
+            </div>
+<% end } end %> 
+<p>Адрес: <input type="text" id="address" name="address" value=""></p>
+<form action="ochistit_corziny" method="post" accept-charset="UTF-8" enctype="text/plain">
+    <input type="text" name="/id_tovar" value="<%= @cookie["/id_tovar"] %>;max-age=0;" hidden > 
+    <input type="submit" class="btn btn-info" value="Очистити кошик" >
+</form>
+
+
+<div id="mydiv"></div>
+
+    <script>
+        
+        const elements = document.getElementsByClassName('zakaz');
+        const user_phone = document.getElementById('userPhone').textContent;
+        const address = document.getElementById('address');
+
+        block = document.getElementById("mydiv");
+        // 2. Создаем новый элемент <input>
+        const input = document.createElement('input');
+        // 3. Добавляем атрибуты
+        input.setAttribute('type', 'submit');
+
+        // 4. Добавляем элемент в DOM
+        block.appendChild(input);
+
+        let string = '';
+
+        // 5. Определяем функцию-обработчик
+          function handleClick() {
+
+            for (const element of elements) {
+
+              // формируем тело заявки
+              string += element.textContent;
+            }
+
+            fetch('/zakaz', {
+                  method: 'POST',
+                  body: string + "\n" + user_phone + "\n" + "Адрес доставки: " + address.value,
+                })
+                .then(response => response.text())
+                .then(data => alert("Ваш запит відпралений для обробки"))
+                .catch(error => console.error('Ошибка:', error));
+          }
+
+        // 6. Добавляем слушатель события 'click'
+        // При клике будет вызвана функция handleClick
+          input.addEventListener('click', handleClick);
+
+    </script>
+
+
