@@ -13,21 +13,21 @@ require 'action_view'
 require 'action_view/helpers'
 require 'active_support/all'
 
-require 'find'
-# пагинация
-require 'kaminari'
-require 'kaminari/helpers/helper_methods'
-require 'pagy'
+# require 'find'
+# # пагинация
+# require 'kaminari'
+# require 'kaminari/helpers/helper_methods'
+# require 'pagy'
 
-require 'nokogiri'
-require "net/http"
-require 'open-uri'
-require 'pry'
-require "httparty"
-require 'selenium-webdriver'
-require 'down'
+# require 'nokogiri'
+# require "net/http"
+# require 'open-uri'
+# require 'pry'
+# require "httparty"
+# require 'selenium-webdriver'
+# require 'down'
 
-require 'rss'
+# require 'rss'
 
 
 
@@ -56,9 +56,9 @@ class MyService < Tag
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::FormTagHelper
   include ActionView::Helpers::FormOptionsHelper
-  include Kaminari::Helpers::HelperMethods
-  include Pagy::HelperLoader
-  include Nokogiri
+  # include Kaminari::Helpers::HelperMethods
+  # include Pagy::HelperLoader
+  # include Nokogiri
   
 
   attr_accessor :cookie, :params, :multipart_params
