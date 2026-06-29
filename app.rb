@@ -8,7 +8,7 @@ require 'stringio'
 require 'cgi'
 # require 'mime/types'
 
-require 'httparty'
+# require 'httparty'
 
 require 'openssl'
 
