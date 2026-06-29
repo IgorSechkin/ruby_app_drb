@@ -6,7 +6,7 @@ require 'rack'
 require 'rack/multipart'
 require 'stringio'
 require 'cgi'
-require 'mime/types'
+# require 'mime/types'
 
 require 'httparty'
 
