@@ -9,9 +9,9 @@ require 'fileutils'
 require 'rack/multipart'
 require 'stringio'
 require 'rack'
-require 'action_view'
-require 'action_view/helpers'
-require 'active_support/all'
+# require 'action_view'
+# require 'action_view/helpers'
+# require 'active_support/all'
 
 # require 'find'
 # # пагинация
@@ -49,13 +49,13 @@ end
 
 class MyService < Tag
 
-  include ActionView::Helpers::NumberHelper
-  include ActionView::Helpers::DateHelper
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::FormHelper
-  include ActionView::Helpers::AssetTagHelper
-  include ActionView::Helpers::FormTagHelper
-  include ActionView::Helpers::FormOptionsHelper
+  # include ActionView::Helpers::NumberHelper
+  # include ActionView::Helpers::DateHelper
+  # include ActionView::Helpers::TagHelper
+  # include ActionView::Helpers::FormHelper
+  # include ActionView::Helpers::AssetTagHelper
+  # include ActionView::Helpers::FormTagHelper
+  # include ActionView::Helpers::FormOptionsHelper
   # include Kaminari::Helpers::HelperMethods
   # include Pagy::HelperLoader
   # include Nokogiri
