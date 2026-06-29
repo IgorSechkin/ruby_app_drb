@@ -1,7 +1,6 @@
 require 'rack'
 require 'rubygems'
 require 'bundler'
-require 'woocommerce_api'
 require './app'
 use Rack::Reloader
 
